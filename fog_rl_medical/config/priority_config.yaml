@@ -1,0 +1,16 @@
+priority_weights:
+  rule_score: 0.6
+  ml_score: 0.4
+sla_profiles:
+  priority_1:
+    latency_ms: 100
+    compute_budget: 0.8
+  priority_2:
+    latency_ms: 500
+    compute_budget: 0.6
+  priority_3:
+    latency_ms: 2000
+    compute_budget: 0.4
+  priority_4:
+    latency_ms: 10000
+    compute_budget: 0.2

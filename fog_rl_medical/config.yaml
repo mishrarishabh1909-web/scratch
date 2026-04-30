@@ -1,0 +1,5 @@
+configs:
+  env: config/env_config.yaml
+  rl: config/rl_config.yaml
+  llm: config/llm_config.yaml
+  priority: config/priority_config.yaml

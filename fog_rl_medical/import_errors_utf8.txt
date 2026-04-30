@@ -1,0 +1,3 @@
+c:\Users\ASUS\.gemini\antigravity\scratch\fog_rl_medical\environment\sla_checker.py - ERROR: ModuleNotFoundError: No module named 'priority.sla_profiles'
+c:\Users\ASUS\.gemini\antigravity\scratch\fog_rl_medical\environment\topology_builder.py - ERROR: ModuleNotFoundError: No module named 'yafs'
+Total files with errors: 2

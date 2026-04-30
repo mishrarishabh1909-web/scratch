@@ -1,0 +1,5 @@
+{
+  "python.defaultInterpreterPath": "C:\\Users\\ASUS\\anaconda3\\python.exe",
+  "python.analysis.extraPaths": ["./fog_rl_medical"],
+  "python.envFile": "${workspaceFolder}/.env"
+}

@@ -1,0 +1,22 @@
+environment:
+  num_fog_nodes: 5
+  num_edge_devices: 20
+  node_capacity:
+    cpu: 100          # normalized units
+    memory: 100
+    bandwidth: 100
+  buffer_capacity: 200
+  buffer_efficiency: 0.95
+  sla_threshold: 0.8
+  episode_length: 500
+  max_queue: 200
+workload:
+  base_arrival_rate: 30.0
+  burst_arrival_rate: 50.0
+  variability: 0.3
+  diurnal_pattern: true
+  modality_distribution:
+    ECG: 0.35
+    VITALS: 0.35
+    IMAGE: 0.20
+    TEXT: 0.10

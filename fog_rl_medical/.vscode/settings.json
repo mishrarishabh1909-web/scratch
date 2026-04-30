@@ -1,0 +1,18 @@
+{
+    "python.envFile": "${workspaceFolder}/.env",
+    "python.defaultInterpreterPath": "C:\\Users\\ASUS\\anaconda3\\python.exe",
+    "python.analysis.extraPaths": [
+        "c:\\Users\\ASUS\\.gemini\\antigravity\\scratch\\fog_rl_medical"
+    ],
+    "github.copilot.enable": {
+        "yaml": true,
+        "json": true,
+        "python": true,
+        "markdown": true
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.formatOnSave": true
+        
+    }
+}

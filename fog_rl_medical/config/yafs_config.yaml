@@ -1,0 +1,28 @@
+# YAFS Configuration
+# Set use_yafs to true to enable YAFS environment (requires YAFS installation)
+# Set to false to use custom fog environment (default)
+
+simulator:
+  use_yafs: false  # Set to true to use YAFS simulator
+  yafs_enabled: false  # Auto-detected based on installation
+  
+environment:
+  num_fog_nodes: 5
+  simulation_time: 1000  # seconds
+
+network:
+  bandwidth_fog_to_fog: 10  # Mbps
+  bandwidth_fog_to_cloud: 100  # Mbps
+  latency_fog_to_fog: 5  # ms
+  latency_fog_to_cloud: 20  # ms
+  latency_sensor_to_fog: 2  # ms
+
+nodes:
+  fog:
+    cpu_cores: 4
+    memory_gb: 8
+    power_watts: 100
+  cloud:
+    cpu_cores: 16
+    memory_gb: 64
+    power_watts: 500

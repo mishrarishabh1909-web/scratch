@@ -1,0 +1,14 @@
+training:
+  num_episodes: 2000
+  high_policy_update_freq: 10
+  low_policy_update_freq: 1
+  target_update_freq: 100
+  batch_size: 64
+  memory_size: 50000
+  learning_rate: 0.0005
+  gamma: 0.99
+  epsilon_start: 1.0
+  epsilon_end: 0.01
+  epsilon_decay: 0.998
+  save_frequency: 100
+  eval_frequency: 200

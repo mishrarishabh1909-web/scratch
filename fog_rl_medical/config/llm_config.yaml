@@ -1,0 +1,10 @@
+llm:
+  provider: openai          # or: ollama, huggingface
+  model: gpt-4o-mini
+  timeout_ms:
+    priority_1: 150
+    priority_2: 200
+    priority_3: 1000
+    priority_4: 2000
+  cache_ttl_seconds: 60
+  fallback_on_timeout: true
