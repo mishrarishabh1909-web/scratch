@@ -1,22 +1,83 @@
+# ========================================
+# REALISTIC MEDICAL FOG HARDWARE SPECS
+# Based on: NVIDIA Jetson, AWS Outposts
+# ========================================
+
 environment:
-  num_fog_nodes: 5
+  num_fog_nodes: 16                         # Expanded from 5 to 16 nodes
   num_edge_devices: 20
+  
+  # Realistic Node Capacity (per fog node)
   node_capacity:
-    cpu: 100          # normalized units
-    memory: 100
-    bandwidth: 100
-  buffer_capacity: 200
+    cpu_cores: 12                           # 12 CPU cores (realistic: 8-16)
+    memory_gb: 32                           # 32 GB RAM (realistic: 16-64)
+    bandwidth_mbps: 1000                    # 1 Gbps (1000 Mbps local network)
+    storage_gb: 256                         # Local SSD storage
+    
+  # Power Specifications (Watts)
+  power_specs:
+    idle_power: 50                          # Idle power consumption
+    peak_power: 200                         # Peak power consumption
+    
+  # Buffer & Queue Settings
+  buffer_capacity: 500                      # Increased for 16 nodes
   buffer_efficiency: 0.95
   sla_threshold: 0.8
   episode_length: 500
-  max_queue: 200
+  max_queue: 500                            # Increased queue depth
+  
+  # Latency Specifications (ms)
+  latency:
+    processing_base_ms: 10                  # Base processing latency
+    network_latency_ms: 2                   # Network latency between nodes
+
+# ========================================
+# MEDICAL WORKLOAD CHARACTERISTICS
+# ========================================
+
 workload:
-  base_arrival_rate: 30.0
-  burst_arrival_rate: 50.0
+  # Task arrival rates (tasks/sec) - Scaled for 16 nodes
+  base_arrival_rate: 60.0                   # Doubled from 30 for 16 nodes
+  burst_arrival_rate: 100.0                 # Doubled from 50 for bursts
   variability: 0.3
   diurnal_pattern: true
+  
+  # Medical Data Distribution
   modality_distribution:
-    ECG: 0.35
-    VITALS: 0.35
-    IMAGE: 0.20
-    TEXT: 0.10
+    ECG: 0.35                               # ECG: 35% of tasks
+    VITALS: 0.35                            # Vitals: 35% of tasks
+    IMAGE: 0.20                             # Medical Imaging: 20% of tasks
+    TEXT: 0.10                              # Clinical Text: 10% of tasks
+
+# ========================================
+# MEDICAL PROCESSING REQUIREMENTS
+# ========================================
+
+medical_processing:
+  ecg_processing:
+    cpu_cores_required: 0.5                 # 0.5 core per ECG task
+    memory_mb_required: 200                 # 200 MB RAM
+    bandwidth_mbps_required: 5              # 5 Mbps for ECG transmission
+    processing_time_ms: 15                  # 15ms processing time
+    priority_weight: 1.0                    # Medium priority
+    
+  vitals_processing:
+    cpu_cores_required: 0.2                 # Lightweight
+    memory_mb_required: 100                 # 100 MB RAM
+    bandwidth_mbps_required: 2              # 2 Mbps for vitals
+    processing_time_ms: 5                   # 5ms processing time
+    priority_weight: 0.8                    # Lower priority
+    
+  imaging_processing:
+    cpu_cores_required: 4.0                 # Heavy - 4 cores
+    memory_mb_required: 2048                # 2 GB RAM (large images)
+    bandwidth_mbps_required: 500            # 500 Mbps for medical imaging
+    processing_time_ms: 500                 # 500ms processing time
+    priority_weight: 2.0                    # Higher priority
+    
+  text_processing:
+    cpu_cores_required: 1.0                 # 1 core for NLP
+    memory_mb_required: 512                 # 512 MB RAM
+    bandwidth_mbps_required: 10             # 10 Mbps for text
+    processing_time_ms: 100                 # 100ms processing time
+    priority_weight: 1.2                    # Medium-high priority

@@ -16,12 +16,23 @@ class ClusterState:
 class FogClusterEnv:
     def __init__(self, config=None):
         self.config = config or {}
-        self.num_nodes = self.config.get('num_fog_nodes', 5)
-        # Power specifications for each node type (in Watts)
-        # Fog nodes: 40W idle + up to 60W active
+        self.num_nodes = self.config.get('environment', {}).get('num_fog_nodes', 5)
+        
+        # Get realistic power specifications from config or use defaults
+        power_specs = self.config.get('environment', {}).get('power_specs', {})
+        
+        # Realistic Power specifications (based on edge hardware specs)
+        # Fog nodes: NVIDIA Jetson / AWS Outposts: 50W idle + 200W peak
+        # Cloud nodes: Enterprise servers: Much higher power
         self.node_power_specs = {
-            'fog': {'idle': 40.0, 'peak': 100.0},
-            'cloud': {'idle': 20.0, 'peak': 100.0}
+            'fog': {
+                'idle': power_specs.get('idle_power', 50.0),  # 50W idle
+                'peak': power_specs.get('peak_power', 200.0)   # 200W peak
+            },
+            'cloud': {
+                'idle': 100.0,
+                'peak': 500.0
+            }
         }
         self.reset()
         
